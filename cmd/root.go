@@ -107,16 +107,13 @@ func init() {
 		"rpadx":    rpadx,
 		"rainbow":  rainbow,
 		"contains": strings.Contains,
-		"replace":  strings.ReplaceAll,
-		"upper":    strings.ToUpper,
-		"lower":    strings.ToLower,
-		"split":    strings.Split,
 	})
 
 	rootCmd.Version = fmt.Sprintf(
 		"%s %s/%s", version.BuildVersion,
 		runtime.GOOS, runtime.GOARCH)
-	usageTpl = `{{contains .Name "foo"}}`
+
+	usageTpl = `{{if contains "hhhtestkahd" "test"}}Found 'test'!{{end}}`
 	rootCmd.SetUsageTemplate(usageTpl)
 	rootCmd.AddCommand(api.Cmd, bug.Cmd, docker.Cmd, kube.Cmd, env.Cmd, gateway.Cmd, model.Cmd)
 	rootCmd.AddCommand(migrate.Cmd, quickstart.Cmd, rpc.Cmd, tpl.Cmd, upgrade.Cmd, config.Cmd)

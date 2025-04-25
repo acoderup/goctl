@@ -102,39 +102,21 @@ func isBuiltin(name string) bool {
 
 func init() {
 	cobra.AddTemplateFuncs(template.FuncMap{
-		"blue":    blue,
-		"green":   green,
-		"rpadx":   rpadx,
-		"rainbow": rainbow,
-		"contains": func(s, substr string) bool {
-			return strings.Contains(s, substr)
-		},
-		"concat": func(strs ...string) string {
-			return strings.Join(strs, "")
-		},
-		"strlen": func(s string) int {
-			return len(s)
-		},
-		"substr": func(s string, start, length int) string {
-			if start < 0 || start >= len(s) {
-				return ""
-			}
-			end := start + length
-			if end > len(s) {
-				end = len(s)
-			}
-			return s[start:end]
-		},
-		"replace": strings.ReplaceAll,
-		"upper":   strings.ToUpper,
-		"lower":   strings.ToLower,
-		"split":   strings.Split,
+		"blue":     blue,
+		"green":    green,
+		"rpadx":    rpadx,
+		"rainbow":  rainbow,
+		"contains": strings.Contains,
+		"replace":  strings.ReplaceAll,
+		"upper":    strings.ToUpper,
+		"lower":    strings.ToLower,
+		"split":    strings.Split,
 	})
 
 	rootCmd.Version = fmt.Sprintf(
 		"%s %s/%s", version.BuildVersion,
 		runtime.GOOS, runtime.GOARCH)
-
+	usageTpl = `{{contains .Name "foo"}}`
 	rootCmd.SetUsageTemplate(usageTpl)
 	rootCmd.AddCommand(api.Cmd, bug.Cmd, docker.Cmd, kube.Cmd, env.Cmd, gateway.Cmd, model.Cmd)
 	rootCmd.AddCommand(migrate.Cmd, quickstart.Cmd, rpc.Cmd, tpl.Cmd, upgrade.Cmd, config.Cmd)

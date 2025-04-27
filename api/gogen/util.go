@@ -44,8 +44,10 @@ func genFile(c fileGenConfig) error {
 			return err
 		}
 	}
-
-	t := template.Must(template.New(c.templateName).Parse(text))
+	funcMap := template.FuncMap{
+		"contains": strings.Contains,
+	}
+	t := template.Must(template.New(c.templateName).Funcs(funcMap).Parse(text))
 	buffer := new(bytes.Buffer)
 	err = t.Execute(buffer, c.data)
 	if err != nil {

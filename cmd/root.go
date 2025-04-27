@@ -102,18 +102,16 @@ func isBuiltin(name string) bool {
 
 func init() {
 	cobra.AddTemplateFuncs(template.FuncMap{
-		"blue":     blue,
-		"green":    green,
-		"rpadx":    rpadx,
-		"rainbow":  rainbow,
-		"contains": strings.Contains,
+		"blue":    blue,
+		"green":   green,
+		"rpadx":   rpadx,
+		"rainbow": rainbow,
 	})
 
 	rootCmd.Version = fmt.Sprintf(
 		"%s %s/%s", version.BuildVersion,
 		runtime.GOOS, runtime.GOARCH)
 
-	usageTpl = `{{if contains "hhhtestkahd" "test"}}Found 'test'!{{end}}`
 	rootCmd.SetUsageTemplate(usageTpl)
 	rootCmd.AddCommand(api.Cmd, bug.Cmd, docker.Cmd, kube.Cmd, env.Cmd, gateway.Cmd, model.Cmd)
 	rootCmd.AddCommand(migrate.Cmd, quickstart.Cmd, rpc.Cmd, tpl.Cmd, upgrade.Cmd, config.Cmd)

@@ -1,6 +1,8 @@
 package util
 
 import (
+	"slices"
+	"strconv"
 	"strings"
 
 	"github.com/acoderup/goctl/util/console"
@@ -54,14 +56,9 @@ func Untitle(s string) string {
 }
 
 // Index returns the index where the item equal,it will return -1 if mismatched
+// Deprecated: use slices.Index instead
 func Index(slice []string, item string) int {
-	for i := range slice {
-		if slice[i] == item {
-			return i
-		}
-	}
-
-	return -1
+	return slices.Index(slice, item)
 }
 
 // SafeString converts the input string into a safe naming style in golang
@@ -120,4 +117,27 @@ func TrimWhiteSpace(s string) string {
 func IsEmptyStringOrWhiteSpace(s string) bool {
 	v := TrimWhiteSpace(s)
 	return len(v) == 0
+}
+
+func FieldsAndTrimSpace(s string, f func(r rune) bool) []string {
+	fields := strings.FieldsFunc(s, f)
+	var resp []string
+	for _, v := range fields {
+		val := TrimWhiteSpace(v)
+		if len(val) > 0 {
+			resp = append(resp, v)
+		}
+	}
+	return resp
+}
+
+//Deprecated: This function implementation is incomplete and does not properly handle exceptional input cases.
+//We strongly recommend using the standard library's strconv.Unquote function instead,
+//which provides robust error handling and comprehensive support for various input formats.
+func Unquote(s string) string {
+	ns, err := strconv.Unquote(s)
+	if err != nil {
+		return ""
+	}
+	return ns
 }

@@ -6,8 +6,8 @@ import (
 	"os/exec"
 	"runtime"
 
-	"github.com/acoderup/goctl/internal/version"
 	"github.com/spf13/cobra"
+	"github.com/acoderup/goctl/internal/version"
 )
 
 const (

@@ -5,12 +5,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/spf13/cobra"
 	"github.com/acoderup/goctl/pkg/env"
 	"github.com/acoderup/goctl/pkg/protoc"
 	"github.com/acoderup/goctl/pkg/protocgengo"
 	"github.com/acoderup/goctl/pkg/protocgengogrpc"
 	"github.com/acoderup/goctl/util/console"
-	"github.com/spf13/cobra"
 )
 
 type bin struct {

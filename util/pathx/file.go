@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/acoderup/goctl/internal/version"
 	"github.com/gookit/color"
+	"github.com/acoderup/goctl/internal/version"
 )
 
 // NL defines a new line.

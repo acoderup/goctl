@@ -6,11 +6,11 @@ import (
 	"os"
 	"path"
 
-	"github.com/acoderup/goctl/update/config"
-	"github.com/acoderup/goctl/util/pathx"
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/hash"
 	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/acoderup/goctl/update/config"
+	"github.com/acoderup/goctl/util/pathx"
 )
 
 const (

@@ -7,6 +7,7 @@ import (
 
 	"github.com/acoderup/goctl/api/spec"
 	"github.com/acoderup/goctl/config"
+	"github.com/acoderup/goctl/internal/version"
 	"github.com/acoderup/goctl/util/format"
 	"github.com/acoderup/goctl/util/pathx"
 	"github.com/acoderup/goctl/vars"
@@ -15,7 +16,7 @@ import (
 //go:embed main.tpl
 var mainTemplate string
 
-func genMain(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) error {
+func genMain(dir, rootPkg, projectPkg string, cfg *config.Config, api *spec.ApiSpec) error {
 	name := strings.ToLower(api.Service.Name)
 	filename, err := format.FileNamingFormat(cfg.NamingFormat, name)
 	if err != nil {
@@ -38,6 +39,8 @@ func genMain(dir, rootPkg string, cfg *config.Config, api *spec.ApiSpec) error {
 		data: map[string]string{
 			"importPackages": genMainImports(rootPkg),
 			"serviceName":    configName,
+			"projectPkg":     projectPkg,
+			"version":        version.BuildVersion,
 		},
 	})
 }

@@ -1,14 +1,14 @@
 syntax = "v1"
 
 
-@server(
-    group: group2
+@server (
+    group:      group2
     middleware: Path
     prefix:     /v1/group2
     timeout:    100ms
 )
 service example {
-    @doc(
+    @doc (
         desc: "path demo"
     )
     @handler getPath2

@@ -10,14 +10,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/acoderup/goctl/config"
-	"github.com/acoderup/goctl/model/sql/parser"
-	"github.com/acoderup/goctl/util/pathx"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/stores/builder"
 	"github.com/zeromicro/go-zero/core/stringx"
+	"github.com/acoderup/goctl/config"
+	"github.com/acoderup/goctl/model/sql/parser"
+	"github.com/acoderup/goctl/util/pathx"
 )
 
 //go:embed testdata/user.sql

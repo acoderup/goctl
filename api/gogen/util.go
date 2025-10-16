@@ -7,11 +7,11 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/zeromicro/go-zero/core/collection"
 	"github.com/acoderup/goctl/api/spec"
 	"github.com/acoderup/goctl/api/util"
 	"github.com/acoderup/goctl/pkg/golang"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/zeromicro/go-zero/core/collection"
 )
 
 type fileGenConfig struct {
@@ -44,6 +44,7 @@ func genFile(c fileGenConfig) error {
 			return err
 		}
 	}
+
 	funcMap := template.FuncMap{
 		"contains": strings.Contains,
 	}
@@ -117,29 +118,29 @@ func writeProperty(writer io.Writer, name, tag, comment string, tp spec.Type, in
 }
 
 func getAuths(api *spec.ApiSpec) []string {
-	authNames := collection.NewSet()
+	authNames := collection.NewSet[string]()
 	for _, g := range api.Service.Groups {
 		jwt := g.GetAnnotation("jwt")
 		if len(jwt) > 0 {
 			authNames.Add(jwt)
 		}
 	}
-	return authNames.KeysStr()
+	return authNames.Keys()
 }
 
 func getJwtTrans(api *spec.ApiSpec) []string {
-	jwtTransList := collection.NewSet()
+	jwtTransList := collection.NewSet[string]()
 	for _, g := range api.Service.Groups {
 		jt := g.GetAnnotation(jwtTransKey)
 		if len(jt) > 0 {
 			jwtTransList.Add(jt)
 		}
 	}
-	return jwtTransList.KeysStr()
+	return jwtTransList.Keys()
 }
 
 func getMiddleware(api *spec.ApiSpec) []string {
-	result := collection.NewSet()
+	result := collection.NewSet[string]()
 	for _, g := range api.Service.Groups {
 		middleware := g.GetAnnotation("middleware")
 		if len(middleware) > 0 {
@@ -149,7 +150,7 @@ func getMiddleware(api *spec.ApiSpec) []string {
 		}
 	}
 
-	return result.KeysStr()
+	return result.Keys()
 }
 
 func responseGoTypeName(r spec.Route, pkg ...string) string {

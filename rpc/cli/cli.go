@@ -6,11 +6,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/spf13/cobra"
 	"github.com/acoderup/goctl/rpc/generator"
 	"github.com/acoderup/goctl/util"
 	"github.com/acoderup/goctl/util/console"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/spf13/cobra"
 )
 
 var (
@@ -46,6 +46,8 @@ var (
 	VarBoolMultiple bool
 	// VarBoolClient describes whether to generate rpc client
 	VarBoolClient bool
+	// VarStringModule describes the module name for go.mod.
+	VarStringModule string
 )
 
 // RPCNew is to generate rpc greet service, this greet service can speed
@@ -91,6 +93,7 @@ func RPCNew(_ *cobra.Command, args []string) error {
 	ctx.Output = filepath.Dir(src)
 	ctx.ProtocCmd = fmt.Sprintf("protoc -I=%s %s --go_out=%s --go-grpc_out=%s", filepath.Dir(src), filepath.Base(src), filepath.Dir(src), filepath.Dir(src))
 	ctx.IsGenClient = VarBoolClient
+	ctx.Module = VarStringModule
 
 	grpcOptList := VarStringSliceGoGRPCOpt
 	if len(grpcOptList) > 0 {

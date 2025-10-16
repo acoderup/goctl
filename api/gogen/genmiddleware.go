@@ -6,6 +6,7 @@ import (
 
 	"github.com/acoderup/goctl/api/spec"
 	"github.com/acoderup/goctl/config"
+	"github.com/acoderup/goctl/internal/version"
 	"github.com/acoderup/goctl/util/format"
 )
 
@@ -31,7 +32,8 @@ func genMiddleware(dir string, cfg *config.Config, api *spec.ApiSpec) error {
 			templateFile:    middlewareImplementCodeFile,
 			builtinTemplate: middlewareImplementCode,
 			data: map[string]string{
-				"name": strings.Title(name),
+				"name":    strings.Title(name),
+				"version": version.BuildVersion,
 			},
 		})
 		if err != nil {

@@ -2,10 +2,11 @@ package converter
 
 import (
 	"fmt"
+	"strings"
+
+	"github.com/zeromicro/ddl-parser/parser"
 	"github.com/acoderup/goctl/config"
 	"github.com/acoderup/goctl/pkg/env"
-	"github.com/zeromicro/ddl-parser/parser"
-	"strings"
 )
 
 var unsignedTypeMap = map[string]string{

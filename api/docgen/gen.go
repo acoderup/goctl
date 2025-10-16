@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/spf13/cobra"
 	"github.com/acoderup/goctl/api/parser"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/spf13/cobra"
 )
 
 var (

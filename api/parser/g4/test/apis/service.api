@@ -1,10 +1,9 @@
-type Foo{
-}
+type Foo {}
 
 @server(
     foo: foo
     bar: "bar"
-fooBar: "foo
+    fooBar: "foo
 bar"
 )
 service foo-api {
@@ -18,12 +17,12 @@ service foo-api {
     @server(
         handler: getFoo
     )
-    post /foo/:id returns (Foo)
+    post /foo/:id returns(Foo)
 }
 
 service foo-api {
     @doc(
-        summary: "post foo"
+        summary:"post foo"
     )
     @handler postFoo
     post /foo/bar/post (Foo)

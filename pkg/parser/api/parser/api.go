@@ -5,11 +5,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/zeromicro/go-zero/core/lang"
 	"github.com/acoderup/goctl/pkg/parser/api/ast"
 	"github.com/acoderup/goctl/pkg/parser/api/importstack"
 	"github.com/acoderup/goctl/pkg/parser/api/placeholder"
 	"github.com/acoderup/goctl/pkg/parser/api/token"
-	"github.com/zeromicro/go-zero/core/lang"
 )
 
 const (

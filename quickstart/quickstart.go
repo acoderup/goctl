@@ -5,11 +5,11 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/spf13/cobra"
+	"github.com/zeromicro/go-zero/core/logx"
 	"github.com/acoderup/goctl/util/console"
 	"github.com/acoderup/goctl/util/ctx"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/spf13/cobra"
-	"github.com/zeromicro/go-zero/core/logx"
 )
 
 const baseDir = "greet"

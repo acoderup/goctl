@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
 	"github.com/acoderup/goctl/api/parser/g4/ast"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/stretchr/testify/assert"
 )
 
 var (

@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/acoderup/goctl/util/console"
-	"github.com/acoderup/goctl/util/ctx"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
+	"github.com/acoderup/goctl/util/console"
+	"github.com/acoderup/goctl/util/ctx"
 )
 
 const defaultMigrateVersion = "v1.3.0"

@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/zeromicro/antlr"
 	"github.com/acoderup/goctl/api/parser/g4/gen/api"
 	"github.com/acoderup/goctl/util/console"
-	"github.com/zeromicro/antlr"
 )
 
 type (

@@ -6,5 +6,5 @@ type Request {
 
 service A-api {
     @handler GreetHandler
-    get /greet/from/:name (Request)
+    get /greet/from/:name(Request)
 }

@@ -11,13 +11,13 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/spf13/cobra"
+	"github.com/zeromicro/go-zero/core/errorx"
 	"github.com/acoderup/goctl/api/parser"
 	"github.com/acoderup/goctl/api/util"
 	"github.com/acoderup/goctl/pkg/env"
 	apiF "github.com/acoderup/goctl/pkg/parser/api/format"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/spf13/cobra"
-	"github.com/zeromicro/go-zero/core/errorx"
 )
 
 const (
@@ -42,8 +42,19 @@ var (
 func GoFormatApi(_ *cobra.Command, _ []string) error {
 	var be errorx.BatchError
 	if VarBoolUseStdin {
-		if err := apiFormatReader(os.Stdin, VarStringDir, VarBoolSkipCheckDeclare); err != nil {
-			be.Add(err)
+		if env.UseExperimental() {
+			data, err := io.ReadAll(os.Stdin)
+			if err != nil {
+				be.Add(err)
+			} else {
+				if err := apiF.Source(data, os.Stdout); err != nil {
+					be.Add(err)
+				}
+			}
+		} else {
+			if err := apiFormatReader(os.Stdin, VarStringDir, VarBoolSkipCheckDeclare); err != nil {
+				be.Add(err)
+			}
 		}
 	} else {
 		if len(VarStringDir) == 0 {

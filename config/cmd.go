@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/spf13/cobra"
 	"github.com/acoderup/goctl/internal/cobrax"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/spf13/cobra"
 )
 
 var (

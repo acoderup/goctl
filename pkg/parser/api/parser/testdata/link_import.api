@@ -3,8 +3,7 @@ syntax = "v1"
 import "base/request.api"
 import "base/response.api"
 
-type Foo{
-}
+type Foo {}
 
 service demo {
     @handler handlerName

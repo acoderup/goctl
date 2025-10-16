@@ -8,8 +8,8 @@ version: 1.0
 
 // TODO: test
 // {
-type Request struct {                          // TODO: test
-                                               // TODO
+type Request struct {  // TODO: test
+                       // TODO
     Name string `path:"name,options=you|me"`   // }
 } // TODO: test
 
@@ -28,9 +28,9 @@ service A-api {
     @server( // C3
         handler: GreetHandler
     )
-    get /greet/from/:name (Request) returns (Response)   // hello
+    get /greet/from/:name(Request) returns (Response)   // hello
 
     // C4
     @handler NoResponseHandler  // C5
-    get /greet/get (Request)
+    get /greet/get(Request)
 }

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/acoderup/goctl/rpc/execx"
 	"github.com/spf13/cobra"
+	"github.com/acoderup/goctl/rpc/execx"
 )
 
 // upgrade gets the latest goctl by

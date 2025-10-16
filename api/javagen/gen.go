@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/acoderup/goctl/api/parser"
-	"github.com/acoderup/goctl/util/pathx"
 	"github.com/gookit/color"
 	"github.com/spf13/cobra"
 	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/acoderup/goctl/api/parser"
+	"github.com/acoderup/goctl/util/pathx"
 )
 
 var (

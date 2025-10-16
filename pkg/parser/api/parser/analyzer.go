@@ -5,12 +5,12 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/zeromicro/go-zero/core/lang"
 	"github.com/acoderup/goctl/api/spec"
 	"github.com/acoderup/goctl/pkg/parser/api/ast"
 	"github.com/acoderup/goctl/pkg/parser/api/importstack"
 	"github.com/acoderup/goctl/pkg/parser/api/placeholder"
 	"github.com/acoderup/goctl/pkg/parser/api/token"
-	"github.com/zeromicro/go-zero/core/lang"
 )
 
 // Analyzer analyzes the ast and converts it to spec.
@@ -244,6 +244,7 @@ func (a *Analyzer) fillService() error {
 			group.Annotation.Properties = a.convertKV(item.AtServerStmt.Values)
 		}
 
+		sse := group.GetAnnotation("sse") == "true"
 		for _, astRoute := range item.Routes {
 			head, leading := astRoute.CommentGroup()
 			route := spec.Route{
@@ -276,6 +277,13 @@ func (a *Analyzer) fillService() error {
 					return err
 				}
 				route.ResponseType = responseType
+			}
+			if route.ResponseType == nil && sse {
+				if route.RequestType != nil {
+					return ast.SyntaxError(astRoute.Route.Request.Pos(), "missing response type")
+				} else {
+					return ast.SyntaxError(astRoute.Route.Path.Pos(), "missing response type")
+				}
 			}
 
 			if err := a.fillRouteType(&route); err != nil {
@@ -417,9 +425,12 @@ func (a *Analyzer) getType(expr *ast.BodyStmt, req bool) (spec.Type, error) {
 	}
 	if body.LBrack != nil {
 		if body.Star != nil {
-			return spec.PointerType{
+			return spec.ArrayType{
 				RawName: rawText,
-				Type:    tp,
+				Value: spec.PointerType{
+					RawName: rawText,
+					Type:    tp,
+				},
 			}, nil
 		}
 		return spec.ArrayType{

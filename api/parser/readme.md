@@ -127,8 +127,7 @@ syntax = "V1"
 
 ## import语法块
 
-随着业务规模增大，api中定义的结构体和服务越来越多，所有的语法描述均为一个api文件，这是多么糟糕的一个问题，
-其会大大增加了阅读难度和维护难度，import语法块可以帮助我们解决这个问题，通过拆分api文件，
+随着业务规模增大，api中定义的结构体和服务越来越多，所有的语法描述均为一个api文件，这是多么糟糕的一个问题， 其会大大增加了阅读难度和维护难度，import语法块可以帮助我们解决这个问题，通过拆分api文件，
 不同的api文件按照一定规则声明，可以降低阅读难度和维护难度。
 
 > ### 警告 ⚠️
@@ -145,8 +144,7 @@ syntax = "V1"
 **语法说明**
 > import：固定token，标志一个import语法的开始
 >
-> checkImportValue：自定义go方法，检测`STRING`是否为一个合法的文件路径，目前检测逻辑为，STRING必须是满足
-`(?m)"(/?[a-zA-Z0-9_#-])+\.api"`正则。
+> checkImportValue：自定义go方法，检测`STRING`是否为一个合法的文件路径，目前检测逻辑为，STRING必须是满足`(?m)"(/?[a-zA-Z0-9_#-])+\.api"`正则。
 >
 > STRING：一串英文双引号包裹的字符串，如"foo.api"
 >
@@ -181,10 +179,8 @@ import (
 
 ## info语法块
 
-info语法块是一个包含了多个键值对的语法体，其作用相当于一个api服务的描述，解析器会将其映射到spec.Spec中，
-以备用于翻译成其他语言(golang、java等)
-时需要携带的meta元素。如果仅仅是对当前api的一个说明，而不考虑其翻译 时传递到其他语言，则使用简单的多行注释或者java风格的文档注释即可，关于注释说明请参考下文的
-**隐藏通道**。
+info语法块是一个包含了多个键值对的语法体，其作用相当于一个api服务的描述，解析器会将其映射到spec.Spec中， 以备用于翻译成其他语言(golang、java等)
+时需要携带的meta元素。如果仅仅是对当前api的一个说明，而不考虑其翻译 时传递到其他语言，则使用简单的多行注释或者java风格的文档注释即可，关于注释说明请参考下文的 **隐藏通道**。
 
 > ### 警告 ⚠️
 > 不能使用重复的key，每个api文件只能有0或者1个info语法块
@@ -276,11 +272,9 @@ info(
 
 ## type语法块
 
-在api服务中，我们需要用到一个结构体(类)来作为请求体，响应体的载体，因此我们需要声明一些结构体来完成这件事情，
-type语法块由golang的type演变而来，当然也保留着一些golang type的特性，沿用golang特性有：
+在api服务中，我们需要用到一个结构体(类)来作为请求体，响应体的载体，因此我们需要声明一些结构体来完成这件事情， type语法块由golang的type演变而来，当然也保留着一些golang type的特性，沿用golang特性有：
 
-* 保留了golang内置数据类型`bool`,`int`,`int8`,`int16`,`int32`,`int64`,`uint`,`uint8`,`uint16`,`uint32`,`uint64`,
-  `uintptr`
+* 保留了golang内置数据类型`bool`,`int`,`int8`,`int16`,`int32`,`int64`,`uint`,`uint8`,`uint16`,`uint32`,`uint64`,`uintptr`
   ,`float32`,`float64`,`complex64`,`complex128`,`string`,`byte`,`rune`,
 * 兼容golang struct风格声明
 * 保留golang关键字
@@ -374,7 +368,7 @@ type Foo{
 * tag表
 
   |tag key |描述 |提供方 |有效范围 |示例 |
-      |:--- |:--- |:--- |:--- |:--- |
+    |:--- |:--- |:--- |:--- |:--- |
   |json|json序列化tag|golang|request、response|`json:"fooo"`|
   |path|路由path，如`/foo/:id`|go-zero|request|`path:"id"`|
   |form|标志请求体是一个form（POST方法时）或者一个query(GET方法时`/search?name=keyword`)|go-zero|request|`form:"name"`|
@@ -383,7 +377,7 @@ type Foo{
   > 常见参数校验描述
 
   |tag key |描述 |提供方 |有效范围 |示例 |
-      |:--- |:--- |:--- |:--- |:--- |
+    |:--- |:--- |:--- |:--- |:--- |
   |optional|定义当前字段为可选参数|go-zero|request|`json:"name,optional"`|
   |options|定义当前字段的枚举值,多个以竖线②隔开|go-zero|request|`json:"gender,options=male"`|
   |default|定义当前字段默认值|go-zero|request|`json:"gender,default=male"`|
@@ -427,8 +421,7 @@ path:           (('/' (ID ('-' ID)*))|('/:' (ID ('-' ID)?)))+;
 
 > serviceSpec：包含了一个可选语法块`atServer`和`serviceApi`语法块，其遵循序列模式（编写service必须要按照顺序，否则会解析出错）
 >
-> atServer： 可选语法块，定义key-value结构的server metadata，'@server'
-> 表示这一个server语法块的开始，其可以用于描述serviceApi或者route语法块，其用于描述不同语法块时有一些特殊关键key
+> atServer： 可选语法块，定义key-value结构的server metadata，'@server'表示这一个server语法块的开始，其可以用于描述serviceApi或者route语法块，其用于描述不同语法块时有一些特殊关键key
 > 需要值得注意，见 **atServer关键key描述说明**。
 >
 > serviceApi：包含了1到多个`serviceRoute`语法块
@@ -447,8 +440,7 @@ path:           (('/' (ID ('-' ID)*))|('/:' (ID ('-' ID)?)))+;
 >
 > body：api请求体语法定义，必须要由()包裹的可选的ID值
 >
-> replyBody：api响应体语法定义，必须由()包裹的struct、~~array(
-向前兼容处理，后续可能会废弃，强烈推荐以struct包裹，不要直接用array作为响应体)~~
+> replyBody：api响应体语法定义，必须由()包裹的struct、~~array(向前兼容处理，后续可能会废弃，强烈推荐以struct包裹，不要直接用array作为响应体)~~
 >
 > kvLit： 同info key-value
 >
@@ -460,17 +452,17 @@ path:           (('/' (ID ('-' ID)*))|('/:' (ID ('-' ID)?)))+;
 
 修饰service时
 
-| key        | 描述                                       | 示例                           |
-|:-----------|:-----------------------------------------|:-----------------------------|
-| jwt        | 声明当前service下所有路由需要jwt鉴权，且会自动生成包含jwt逻辑的代码 | `jwt: Auth`                  |
-| group      | 声明当前service或者路由文件分组                      | `group: login`               |
-| middleware | 声明当前service需要开启中间件                       | `middleware: AuthMiddleware` |
+|key|描述|示例|
+|:---|:---|:---|
+|jwt|声明当前service下所有路由需要jwt鉴权，且会自动生成包含jwt逻辑的代码|`jwt: Auth`|
+|group|声明当前service或者路由文件分组|`group: login`|
+|middleware|声明当前service需要开启中间件|`middleware: AuthMiddleware`|
 
 修饰route时
 
-| key     | 描述          | 示例 |
-|:--------|:------------|:---|
-| handler | 声明一个handler | -  |
+|key|描述|示例|
+|:---|:---|:---|
+|handler|声明一个handler|-|
 
 **正确语法示例** ✅
 
@@ -625,31 +617,29 @@ line comments
 如果想获取某一个元素的doc或者comment开发人员需要怎么定义？
 
 **Doc**
-> 我们规定上一个语法块（非隐藏通道内容）的行数line+1到当前语法块第一个元素前的所有注释(当行，或者多行)均为doc， 且保留了
-`//`、`/*`、`*/`原始标记。
+> 我们规定上一个语法块（非隐藏通道内容）的行数line+1到当前语法块第一个元素前的所有注释(当行，或者多行)均为doc， 且保留了`//`、`/*`、`*/`原始标记。
 
 **Comment**
 > 我们规定当前语法块最后一个元素所在行开始的一个注释块(当行，或者多行)为comment 且保留了`//`、`/*`、`*/`原始标记。
 
 语法块Doc和Comment的支持情况
 
-| 语法块       | parent语法块    | Doc | Comment |
-|:----------|:-------------|:----|:--------|
-| syntaxLit | api          | ✅   | ✅       |
-| kvLit     | infoSpec     | ✅   | ✅       |
-| importLit | importSpec   | ✅   | ✅       |
-| typeLit   | api          | ✅   | ❌       |
-| typeLit   | typeBlock    | ✅   | ❌       |
-| field     | typeLit      | ✅   | ✅       |
-| key-value | atServer     | ✅   | ✅       |
-| atHandler | serviceRoute | ✅   | ✅       |
-| route     | serviceRoute | ✅   | ✅       |
+|语法块|parent语法块|Doc|Comment|
+|:---|:---|:---|:---|
+|syntaxLit|api|✅|✅|
+|kvLit|infoSpec|✅|✅|
+|importLit|importSpec|✅|✅|
+|typeLit|api|✅|❌|
+|typeLit|typeBlock|✅|❌|
+|field|typeLit|✅|✅|
+|key-value|atServer|✅|✅|
+|atHandler|serviceRoute|✅|✅|
+|route|serviceRoute|✅|✅|
 
 以下为对应语法块解析后细带doc和comment的写法
-
 ``` api
 // syntaxLit doc
-syntax = "v1" // syntaxLit commnet
+syntax = "v1" // syntaxLit comment
 
 info(
   // kvLit doc

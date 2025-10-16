@@ -6,7 +6,7 @@ service foo {
     get /ping
 
     @handler bar
-    get /ping ;
+    get /ping;
 }
 
 service bar {

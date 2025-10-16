@@ -17,5 +17,5 @@ go install github.com/acoderup/goctl@latest
 
 ## Verify installation:
 ```bash
-goctl --version
+goctlself --version
 ```

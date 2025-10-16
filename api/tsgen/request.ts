@@ -54,11 +54,11 @@ export function genUrl(url: string, params: any) {
 }
 
 export async function request({
-                                  method,
-                                  url,
-                                  data,
-                                  config = {}
-                              }: {
+    method,
+    url,
+    data,
+    config = {}
+}: {
     method: Method;
     url: string;
     data?: unknown;

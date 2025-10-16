@@ -6,9 +6,9 @@ type Response struct {
 }
 service A-api {
     @handler NormalHandler
-    get /greet/from/:name (Request) returns (Response)
+    get /greet/from/:name(Request) returns (Response)
     @handler NoResponseHandler
-    get /greet/from/:sex (Request)
+    get /greet/from/:sex(Request)
     @handler NoRequestHandler
     get /greet/from/request returns (Response)
     @handler NoRequestNoResponseHandler

@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/spf13/cobra"
 	"github.com/acoderup/goctl/rpc/generator"
 	"github.com/acoderup/goctl/util"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/spf13/cobra"
 )
 
 var (
@@ -103,6 +103,7 @@ func ZRPC(_ *cobra.Command, args []string) error {
 	ctx.Output = zrpcOut
 	ctx.ProtocCmd = strings.Join(protocArgs, " ")
 	ctx.IsGenClient = VarBoolClient
+	ctx.Module = VarStringModule
 	g := generator.NewGenerator(style, verbose)
 	return g.Generate(&ctx)
 }

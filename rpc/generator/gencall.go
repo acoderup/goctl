@@ -7,14 +7,14 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/emicklei/proto"
+	"github.com/zeromicro/go-zero/core/collection"
 	conf "github.com/acoderup/goctl/config"
 	"github.com/acoderup/goctl/rpc/parser"
 	"github.com/acoderup/goctl/util"
 	"github.com/acoderup/goctl/util/format"
 	"github.com/acoderup/goctl/util/pathx"
 	"github.com/acoderup/goctl/util/stringx"
-	"github.com/emicklei/proto"
-	"github.com/zeromicro/go-zero/core/collection"
 )
 
 const (
@@ -64,7 +64,7 @@ func (g *Generator) genCallGroup(ctx DirContext, proto parser.Proto, cfg *conf.C
 		isCallPkgSameToGrpcPkg := childDir == ctx.GetProtoGo().Filename
 
 		serviceName := stringx.From(service.Name).ToCamel()
-		alias := collection.NewSet()
+		alias := collection.NewSet[string]()
 		var hasSameNameBetweenMessageAndService bool
 		for _, item := range proto.Message {
 			msgName := getMessageName(*item.Message)
@@ -72,7 +72,7 @@ func (g *Generator) genCallGroup(ctx DirContext, proto parser.Proto, cfg *conf.C
 				hasSameNameBetweenMessageAndService = true
 			}
 			if !isCallPkgSameToPbPkg {
-				alias.AddStr(fmt.Sprintf("%s = %s", parser.CamelCase(msgName),
+				alias.Add(fmt.Sprintf("%s = %s", parser.CamelCase(msgName),
 					fmt.Sprintf("%s.%s", proto.PbPackage, parser.CamelCase(msgName))))
 			}
 		}
@@ -102,7 +102,7 @@ func (g *Generator) genCallGroup(ctx DirContext, proto parser.Proto, cfg *conf.C
 			protoGoPackage = ""
 		}
 
-		aliasKeys := alias.KeysStr()
+		aliasKeys := alias.Keys()
 		sort.Strings(aliasKeys)
 		if err = util.With("shared").GoFmt(true).Parse(text).SaveTo(map[string]any{
 			"name":           callFilename,
@@ -135,7 +135,7 @@ func (g *Generator) genCallInCompatibility(ctx DirContext, proto parser.Proto,
 	}
 
 	serviceName := stringx.From(service.Name).ToCamel()
-	alias := collection.NewSet()
+	alias := collection.NewSet[string]()
 	var hasSameNameBetweenMessageAndService bool
 	for _, item := range proto.Message {
 		msgName := getMessageName(*item.Message)
@@ -143,7 +143,7 @@ func (g *Generator) genCallInCompatibility(ctx DirContext, proto parser.Proto,
 			hasSameNameBetweenMessageAndService = true
 		}
 		if !isCallPkgSameToPbPkg {
-			alias.AddStr(fmt.Sprintf("%s = %s", parser.CamelCase(msgName),
+			alias.Add(fmt.Sprintf("%s = %s", parser.CamelCase(msgName),
 				fmt.Sprintf("%s.%s", proto.PbPackage, parser.CamelCase(msgName))))
 		}
 	}
@@ -174,7 +174,7 @@ func (g *Generator) genCallInCompatibility(ctx DirContext, proto parser.Proto,
 		pbPackage = ""
 		protoGoPackage = ""
 	}
-	aliasKeys := alias.KeysStr()
+	aliasKeys := alias.Keys()
 	sort.Strings(aliasKeys)
 	return util.With("shared").GoFmt(true).Parse(text).SaveTo(map[string]any{
 		"name":           callFilename,

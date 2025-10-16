@@ -1,8 +1,8 @@
 package bug
 
 import (
-	"github.com/acoderup/goctl/internal/cobrax"
 	"github.com/spf13/cobra"
+	"github.com/acoderup/goctl/internal/cobrax"
 )
 
 // Cmd describes a bug command.

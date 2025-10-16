@@ -3,8 +3,8 @@ package ktgen
 import (
 	"errors"
 
-	"github.com/acoderup/goctl/api/parser"
 	"github.com/spf13/cobra"
+	"github.com/acoderup/goctl/api/parser"
 )
 
 var (

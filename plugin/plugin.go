@@ -12,11 +12,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/spf13/cobra"
 	"github.com/acoderup/goctl/api/parser"
 	"github.com/acoderup/goctl/api/spec"
 	"github.com/acoderup/goctl/rpc/execx"
 	"github.com/acoderup/goctl/util/pathx"
-	"github.com/spf13/cobra"
 )
 
 const pluginArg = "_plugin"

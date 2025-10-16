@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/acoderup/goctl/util/pathx"
 	"github.com/stretchr/testify/assert"
+	"github.com/acoderup/goctl/util/pathx"
 )
 
 func Test_findPbFile(t *testing.T) {

@@ -8,6 +8,9 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/gookit/color"
+	"github.com/spf13/cobra"
+	"github.com/withfig/autocomplete-tools/integrations/cobra"
 	"github.com/acoderup/goctl/api"
 	"github.com/acoderup/goctl/bug"
 	"github.com/acoderup/goctl/config"
@@ -23,9 +26,6 @@ import (
 	"github.com/acoderup/goctl/rpc"
 	"github.com/acoderup/goctl/tpl"
 	"github.com/acoderup/goctl/upgrade"
-	"github.com/gookit/color"
-	"github.com/spf13/cobra"
-	"github.com/withfig/autocomplete-tools/integrations/cobra"
 )
 
 const (

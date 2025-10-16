@@ -5,11 +5,11 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/zeromicro/go-zero/core/collection"
 	"github.com/acoderup/goctl/model/sql/template"
 	"github.com/acoderup/goctl/util"
 	"github.com/acoderup/goctl/util/pathx"
 	"github.com/acoderup/goctl/util/stringx"
-	"github.com/zeromicro/go-zero/core/collection"
 )
 
 // Field describes a table field
@@ -60,17 +60,17 @@ func genCustomized(table Table, withCache, postgreSql bool) (string, error) {
 		fields = append(fields, f)
 	}
 
-	keySet := collection.NewSet()
-	keyVariableSet := collection.NewSet()
-	keySet.AddStr(table.PrimaryCacheKey.KeyExpression)
-	keyVariableSet.AddStr(table.PrimaryCacheKey.KeyLeft)
+	keySet := collection.NewSet[string]()
+	keyVariableSet := collection.NewSet[string]()
+	keySet.Add(table.PrimaryCacheKey.KeyExpression)
+	keyVariableSet.Add(table.PrimaryCacheKey.KeyLeft)
 	for _, key := range table.UniqueCacheKey {
-		keySet.AddStr(key.DataKeyExpression)
-		keyVariableSet.AddStr(key.KeyLeft)
+		keySet.Add(key.DataKeyExpression)
+		keyVariableSet.Add(key.KeyLeft)
 	}
-	keys := keySet.KeysStr()
+	keys := keySet.Keys()
 	sort.Strings(keys)
-	keyVars := keyVariableSet.KeysStr()
+	keyVars := keyVariableSet.Keys()
 	sort.Strings(keyVars)
 
 	camel := table.Name.ToCamel()

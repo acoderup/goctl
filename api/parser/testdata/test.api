@@ -19,5 +19,5 @@
     service greet-api {
         // handler doc
         @handler GreetHandler // handler comment
-        get /from/:name (Request) returns (Response);
+        get /from/:name(Request) returns (Response);
     }

@@ -4,8 +4,8 @@ import (
 	_ "embed"
 	"testing"
 
-	"github.com/acoderup/goctl/api/spec"
 	"github.com/stretchr/testify/assert"
+	"github.com/acoderup/goctl/api/spec"
 )
 
 //go:embed testdata/test.api

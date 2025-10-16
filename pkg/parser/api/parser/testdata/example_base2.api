@@ -10,7 +10,5 @@ info(
     version: "type version here"
 )
 
-type BaseReq2{
-}
-type BaseResp2{
-}
+type BaseReq2{}
+type BaseResp2{}

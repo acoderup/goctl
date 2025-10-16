@@ -47,7 +47,7 @@ func genFile(c fileGenConfig) error {
 
 	funcMap := template.FuncMap{
 		"contains": strings.Contains,
-		"hasGameInfoSuffix": func(fullName string) string {
+		"extractGameName": func(fullName string) string {
 			return strings.TrimSuffix(fullName, "GameInfoGetLogic")
 		},
 	}

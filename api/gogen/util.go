@@ -7,11 +7,11 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/zeromicro/go-zero/core/collection"
 	"github.com/acoderup/goctl/api/spec"
 	"github.com/acoderup/goctl/api/util"
 	"github.com/acoderup/goctl/pkg/golang"
 	"github.com/acoderup/goctl/util/pathx"
+	"github.com/zeromicro/go-zero/core/collection"
 )
 
 type fileGenConfig struct {
@@ -47,6 +47,9 @@ func genFile(c fileGenConfig) error {
 
 	funcMap := template.FuncMap{
 		"contains": strings.Contains,
+		"hasGameInfoSuffix": func(fullName string) string {
+			return strings.TrimSuffix(fullName, "GameInfoGetLogic")
+		},
 	}
 	t := template.Must(template.New(c.templateName).Funcs(funcMap).Parse(text))
 	buffer := new(bytes.Buffer)
